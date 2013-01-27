@@ -14,13 +14,8 @@ import org.junit.Test;
  * @author Miquel
  *
  */
-public class Tests {
-	private String code;
-
-	@Before public void setUp() { 
-		CodeGenerator codeGenerator = new CodeGenerator();
-		code = codeGenerator.generateTodaysCode();
-    }
+public class CodeGeneratorTest {
+	private String code =new CodeGenerator().generateTodaysCode();
 
 	@Test
 	public void testNotNull() {
