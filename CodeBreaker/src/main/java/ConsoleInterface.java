@@ -1,5 +1,6 @@
 package main.java;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ConsoleInterface {
@@ -11,8 +12,11 @@ public class ConsoleInterface {
 	}
 
 	public void printResult(ValidationResult result) {
-		// TODO Auto-generated method stub
-		
+		char [] substringRightColors = new char[result.getRightColors()];
+		char [] substringRightColorsAtRightPlace = new char[result.getRightColorsAtRightPlace()];
+		Arrays.fill(substringRightColorsAtRightPlace,'X');
+		Arrays.fill(substringRightColors,'*');
+		System.out.println(new String(substringRightColorsAtRightPlace) + new String(substringRightColors));
 	}
 
 }

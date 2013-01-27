@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.Arrays;
-import org.apache.commons.lang3.ArrayUtils;
 
 public class CodeValidator {
 	String validCode;
@@ -18,35 +16,35 @@ public class CodeValidator {
 	}
 
 	private int validateRightColors(String attempt) {
-		int result=0;
-		char [] array1= attempt.toCharArray();
-		char [] array2= validCode.toCharArray();
+		StringBuilder sbAttempt= new StringBuilder(attempt);
+		StringBuilder sbValidCode = new StringBuilder(validCode);
 		
-		discardExactMatches(array1, array2);		
-		return countColorMatches(result, array1, array2);
+		discardExactMatches(sbAttempt, sbValidCode);		
+		return countColorMatches(sbAttempt, sbValidCode);
 	}
 
-	private int countColorMatches(int result, char[] array1, char[] array2) {
-		Arrays.sort(array1);
-		Arrays.sort(array2);
-		for (int i = 0; i < array1.length; i++) {
-			int position =Arrays.binarySearch(array2, array1[i]);
+	private int countColorMatches( StringBuilder sbAttempt, StringBuilder sbValidCode) {
+		int result =0;
+
+		for (int i = 0; i < sbAttempt.length(); i++) {
+			int position =sbValidCode.indexOf(sbAttempt.substring(i,i+1));
 			if (position>=0) {
-				ArrayUtils.remove(array2, position);
+				sbValidCode.deleteCharAt(position);
 				result++;
 			}
 		}
 		return result;
 	}
 
-	private void discardExactMatches(char[] array1, char[] array2) {
+	private void discardExactMatches(StringBuilder attempt, StringBuilder validCode) {
 		int i=0;
-		while (i < array1.length) {
-			if (array1[i]==array2[i]) {
-				ArrayUtils.remove(array1, i);
-				ArrayUtils.remove(array2, i);
+		while (i < attempt.length()) {
+			if (attempt.charAt(i)==validCode.charAt(i)) {
+				attempt.deleteCharAt(i);
+				validCode.deleteCharAt(i);
+			} else {
+				i++;
 			}
-			i++;
 		}
 	}
 

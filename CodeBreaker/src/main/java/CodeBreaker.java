@@ -18,7 +18,9 @@ public class CodeBreaker {
 		boolean result = false;
 		ConsoleInterface ui = new ConsoleInterface();
 		while (!result) {
-			ui.printResult(validator.validate(ui.askForCode()));
+			ValidationResult vr =validator.validate(ui.askForCode());
+			result=vr.getRightColorsAtRightPlace()==4;
+			ui.printResult(vr);
 		}
 	}
 
