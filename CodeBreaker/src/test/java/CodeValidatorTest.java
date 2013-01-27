@@ -15,25 +15,25 @@ public class CodeValidatorTest {
 	}
 	
 	@Test
-	public void testValidateTotalFail() {
+	public final void testValidateTotalFail() {
 		ValidationResult result = validator.validate("NINI");
 		assert(result.getRightColors()==0 && result.getRightColorsAtRightPlace()==0);
 	}
 	
 	@Test
-	public void testValidateOneExactOnly() {
+	public final void testValidateOneExactOnly() {
 		ValidationResult result = validator.validate("RINI");
 		assert(result.getRightColors()==0 && result.getRightColorsAtRightPlace()==1);
 	}
 	
 	@Test
-	public void testValidateOneRightColor() {
+	public final void testValidateOneRightColor() {
 		ValidationResult result = validator.validate("IRNI");
-		assert(result.getRightColors()==1 && result.getRightColorsAtRightPlace()==0);
+		assert(result.getRightColors()==1 && result.getRightColorsAtRightPlace()==1);
 	}
 	
 	@Test
-	public void testValidateOneRightColorAndOneExact() {
+	public final void testValidateOneRightColorAndOneExact() {
 		ValidationResult result = validator.validate("RRNI");
 		assert(result.getRightColors()==1 && result.getRightColorsAtRightPlace()==1);
 	}
